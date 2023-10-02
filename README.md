@@ -17,5 +17,5 @@ cd seu-repositorio
 npm install
 
 # Execute o Aplicativo no Servidor
-npx parcel ./src/index.html
+npm run dev
 
