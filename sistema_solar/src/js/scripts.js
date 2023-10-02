@@ -5,6 +5,7 @@ import starsTexture from '../img/stars.jpg';
 import sunTexture from '../img/sun.jpg';
 import mercuryTexture from '../img/mercury.jpg';
 import venusTexture from '../img/venus.jpg';
+import moonTexture from '../img/venus.jpg';
 import earthTexture from '../img/earth.jpg';
 import marsTexture from '../img/mars.jpg';
 import jupiterTexture from '../img/jupiter.jpg';
@@ -57,14 +58,18 @@ const sunMat = new THREE.MeshBasicMaterial({
 const sun = new THREE.Mesh(sunGeo, sunMat);
 scene.add(sun);
 
-function createPlanete(size, texture, position, ring) {
+
+const moonMesh =0;
+function createPlanete(size, texture, position, ring, moon, moonTexture) {
+    const systemPlanete = new THREE.Group();
     const geo = new THREE.SphereGeometry(size, 30, 30);
     const mat = new THREE.MeshStandardMaterial({
         map: textureLoader.load(texture)
     });
     const mesh = new THREE.Mesh(geo, mat);
-    const obj = new THREE.Object3D();
-    obj.add(mesh);
+
+    systemPlanete.add(mesh);
+
     if(ring) {
         const ringGeo = new THREE.RingGeometry(
             ring.innerRadius,
@@ -75,35 +80,28 @@ function createPlanete(size, texture, position, ring) {
             side: THREE.DoubleSide
         });
         const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-        obj.add(ringMesh);
-        ringMesh.position.x = position;
-        ringMesh.rotation.x = -0.5 * Math.PI;
-    }
-    
-    scene.add(obj);
-    mesh.position.x = position;
-    return {mesh, obj}
-}
-function createSatelite(size, texture, position) {
-    const geo = new THREE.SphereGeometry(size, 30, 30);
-    const mat = new THREE.MeshStandardMaterial({
-        map: textureLoader.load(texture)
-    });
-    const mesh = new THREE.Mesh(geo, mat);
-    const obj = new THREE.Object3D();
-    obj.add(mesh);
 
-    mesh.position.x = position;
-    return {mesh, obj}
+        ringMesh.rotateX(3);
+
+        systemPlanete.add(ringMesh);
+    }
+    if(moon) {
+        const moonGeo = new THREE.SphereGeometry(size/5, 30, 30);
+        const moonMat = new THREE.MeshStandardMaterial({
+            map: textureLoader.load(moonTexture)
+        });
+        var moonMesh = new THREE.Mesh(moonGeo, moonMat);
+        moonMesh.position.x = 10;
+        
+        systemPlanete.add(moonMesh);
+    }
+    scene.add(systemPlanete);
+    return {systemPlanete, moonMesh}
 }
 
 const mercury = createPlanete(3.2, mercuryTexture, 28);
 const venus = createPlanete(5.8, venusTexture, 44);
-const earth = createPlanete(6, earthTexture, 62);
-
-const moon = createSatelite(1, venusTexture, 10);
-earth.obj.add(moon)
-
+const earth = createPlanete(6, earthTexture, 62, null, true, moonTexture);
 const mars = createPlanete(4, marsTexture, 78);
 const jupiter = createPlanete(12, jupiterTexture, 100);
 const saturn = createPlanete(10, saturnTexture, 138, {
@@ -122,29 +120,36 @@ const pluto = createPlanete(2.8, plutoTexture, 216);
 const pointLight = new THREE.PointLight(0xFFFFFF, 2, 300);
 scene.add(pointLight);
 
-function animate() {
-    
-    sun.rotateY(0.004);
-    mercury.mesh.rotateY(0.004);
-    venus.mesh.rotateY(0.002);
-    earth.mesh.rotateY(0.02);
-    mars.mesh.rotateY(0.018);
-    jupiter.mesh.rotateY(0.04);
-    saturn.mesh.rotateY(0.038);
-    uranus.mesh.rotateY(0.03);
-    neptune.mesh.rotateY(0.032);
-    pluto.mesh.rotateY(0.008);
+let time = 0;
 
-    
-    mercury.obj.rotateY(0.04);
-    venus.obj.rotateY(0.015);
-    earth.obj.rotateY(0.01);
-    mars.obj.rotateY(0.008);
-    jupiter.obj.rotateY(0.002);
-    saturn.obj.rotateY(0.0009);
-    uranus.obj.rotateY(0.0004);
-    neptune.obj.rotateY(0.0001);
-    pluto.obj.rotateY(0.00007);
+function animate() {
+    time += 0.09;
+
+    sun.rotateY(0.005);
+    mercury.systemPlanete.rotateY(0.005);
+    venus.systemPlanete.rotateY(0.005);
+    jupiter.systemPlanete.rotateY(0.005);
+    pluto.systemPlanete.rotateY(0.005);
+    //saturn.systemPlanete.rotateY(0.005);
+    mars.systemPlanete.rotateY(0.005);
+    earth.systemPlanete.rotateY(0.005);
+    //uranus.systemPlanete.rotateY(0.005);
+    neptune.systemPlanete.rotateY(0.005);
+
+
+
+
+    mercury.systemPlanete.position.set(Math.cos(time * 0.7) *28, 0, Math.sin(time * 0.7) *28);
+    venus.systemPlanete.position.set(Math.cos(time * 0.3) *44, 0, Math.sin(time * 0.3) *44);
+    jupiter.systemPlanete.position.set(Math.cos(time * 0.01) *100, 0, Math.sin(time * 0.01) *100);
+    pluto.systemPlanete.position.set(Math.cos(time * 0.00001) *216, 0, Math.sin(time * 0.00001) *216);
+    saturn.systemPlanete.position.set(Math.cos(time * 0.009) *138, 0, Math.sin(time * 0.009) *138);
+    mars.systemPlanete.position.set(Math.cos(time * 0.07) *78, 0, Math.sin(time * 0.07) *78);
+    earth.systemPlanete.position.set(Math.cos(time * 0.1) *62, 0, Math.sin(time * 0.1) *62);
+    uranus.systemPlanete.position.set(Math.cos(time * 0.003) *176, 0, Math.sin(time * 0.003) *176);
+    neptune.systemPlanete.position.set(Math.cos(time * 0.0009) *200, 0, Math.sin(time * 0.0009) *200);
+  
+    earth.moonMesh.position.set(Math.cos(time * 0.9) *10, 0, Math.sin(time * 0.9) *10);
 
     renderer.render(scene, camera);
 }
