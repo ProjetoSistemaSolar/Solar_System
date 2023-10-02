@@ -1,6 +1,6 @@
 # Solar System
 
-Sistema Solar orbital com Three.js e WebGL.
+Sistema Solar orbital com Three.js.
 
 ## Guia de Uso
 
