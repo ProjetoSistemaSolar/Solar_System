@@ -1,6 +1,17 @@
-# Solar System
+# Sistema Solar 3D
 
-Sistema Solar orbital com Three.js.
+Bem-vindo ao projeto de simulação do sistema solar em 3D! Este é um projeto de demonstração que utiliza a biblioteca Three.js para criar uma cena 3D interativa do sistema solar, incluindo planetas, luas e anéis. Neste README, você encontrará informações detalhadas sobre o projeto e instruções sobre como usá-lo.
+
+## Visão Geral
+
+Este projeto visa demonstrar como criar uma cena 3D interativa usando a biblioteca Three.js. Ele apresenta o sistema solar com os seguintes recursos:
+
+- Renderização 3D em tempo real.
+- Planetas texturizados em órbita ao redor do sol.
+- Anéis de Saturno e Urano.
+- Lua orbitando a Terra.
+- interação com o usuário através da movimentação da camera
+![Screenshot](node_modules/img/screnshot.png)
 
 ## Guia de Uso
 
@@ -18,4 +29,15 @@ npm install
 
 # Execute o Aplicativo no Servidor
 npm run dev
+
+
+
+
+
+
+
+
+
+
+
 
