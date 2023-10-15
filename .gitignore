@@ -1,3 +1,5 @@
 # Ignorar diretórios de dependências do Node.js
 node_modules/
 .parcel-cache/
+.dist/
+.parcelrc/
