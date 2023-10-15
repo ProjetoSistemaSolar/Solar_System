@@ -12,6 +12,8 @@ Este projeto visa demonstrar como criar uma cena 3D interativa usando a bibliote
 - Lua orbitando a Terra.
 - interação com o usuário através da movimentação da camera
 
+![sistemaSolar](https://github.com/ProjetoSistemaSolar/Solar_System/assets/115730575/876d0943-cf54-467b-a938-e20e351d775b)
+
 
 ## requisitos
 
