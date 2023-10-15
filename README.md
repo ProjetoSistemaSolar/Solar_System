@@ -14,10 +14,22 @@ Este projeto visa demonstrar como criar uma cena 3D interativa usando a bibliote
 
 ![sistemaSolar](https://github.com/ProjetoSistemaSolar/Solar_System/assets/115730575/876d0943-cf54-467b-a938-e20e351d775b)
 
+video de demonstração do projeto: 
+https://youtu.be/mHuwGLHaAKs?si=j3Uqhr4n2q_YexC-
 
 ## requisitos
 
 Este projeto requer um navegador da web compatível com a biblioteca Three.js e uma conexão com a internet para carregar as texturas. Certifique-se de que as texturas estejam disponíveis nos caminhos especificados no código.
+
+## Equipe responsável 
+
+WENDEL ALVES <br>
+GABRIEL ARAÚJO <br>
+DARLYSON FONTENELE <br>
+SIDYNELSON FERNANDES <br>
+LÉO MATIAS
+
+
 ## Guia de Uso
 
 Quer usar? Ok, então basta seguir estas etapas simples:
